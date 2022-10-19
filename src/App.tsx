@@ -1,24 +1,50 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.scss";
+import Input from "./components/Input/Input";
+import { TypeOfInput } from "./components/Input/InputTypes";
+
+const useInputController = (defaultState: object) => {
+  const [inputValue, setInputValue] = useState(defaultState);
+
+  const changeValue = (event: any) => {
+    const { name, value } = event.target;
+    setInputValue({ ...inputValue, [name]: value });
+  };
+
+  return {
+    changeValue,
+    inputValue
+  };
+};
+interface ILogin {
+  email: string;
+  password: string;
+}
 
 function App() {
+  const [login, setLogin] = useState({ email: "", password: "" });
+
+  const inputHandleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value, name } = event.target;
+    console.log(value);
+    setLogin({ ...login, [name]: value });
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Input
+        placeholder="Correo"
+        name="email"
+        inputValue={login.email}
+        inputChangeState={inputHandleChange}
+      />
+      <Input
+        placeholder="Contraseña"
+        name="password"
+        inputValue={login.password}
+        inputChangeState={inputHandleChange}
+        type={TypeOfInput.Password}
+      />
     </div>
   );
 }

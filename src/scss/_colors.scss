@@ -1,0 +1,33 @@
+// Theme Colors || Brand Colors
+$themeColors: (
+    primaryColor: #7816AC, 
+    secondaryColor: #0078BC, 
+    tertiaryColor: #7816AC
+);
+
+
+// Notify Colors 
+$notify: (
+    success: #128E47, 
+    warning: #FFC300, 
+    error: #C70039
+);
+
+
+// Backgrounds, Fonts && Focus
+@each $name, $code in $themeColors {
+    .bg-#{$name} {
+        background-color: $code;
+    }
+
+    .color-#{$name} {
+        color: $code;
+    }
+
+    .focus-border-#{$name} {
+        &:focus {
+            outline: none;
+            border-color: $code;
+        }
+    }
+}
