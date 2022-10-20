@@ -1,0 +1,46 @@
+
+$primaryColor: #8B1DC6;
+$primaryColorHover: #7517A7;
+
+$secondaryColor: #037FC5; 
+$secondaryColorHover: #0066A0;
+
+$tertiaryColor: #7816AC;
+$tertiaryColorHover: #7816AC;
+
+$success: #128E47;
+$warning: #FFC300;
+$error: #C70039;
+
+// Theme Colors || Brand Colors
+$themeColors: (
+    primaryColor: $primaryColor, 
+    secondaryColor: $secondaryColor, 
+    tertiaryColor: $tertiaryColor,
+);
+
+// Notify Colors 
+$notify: (
+    success: $success, 
+    warning: $warning, 
+    error: $error,
+);
+
+
+// Backgrounds, Fonts && Focus
+@each $name, $code in $themeColors {
+    .bg-#{$name} {
+        background-color: $code;
+    }
+
+    .color-#{$name} {
+        color: $code;
+    }
+
+    .focus-border-#{$name} {
+        &:focus {
+            outline: none;
+            border-color: $code;
+        }
+    }
+}

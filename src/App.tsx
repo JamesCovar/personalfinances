@@ -1,5 +1,8 @@
-import React, { useState } from "react";
-import "./App.scss";
+import React, { MouseEventHandler, useState } from "react";
+import "./main.scss";
+import Login from "./pages/Login";
+
+import Button from "./components/Button/Button";
 import Input from "./components/Input/Input";
 import { TypeOfInput } from "./components/Input/InputTypes";
 
@@ -26,25 +29,16 @@ function App() {
 
   const inputHandleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = event.target;
-    console.log(value);
     setLogin({ ...login, [name]: value });
   };
 
+  const handleOnClick = () => {
+    console.log('Click');
+  }
+
   return (
     <div className="App">
-      <Input
-        placeholder="Correo"
-        name="email"
-        inputValue={login.email}
-        inputChangeState={inputHandleChange}
-      />
-      <Input
-        placeholder="Contraseña"
-        name="password"
-        inputValue={login.password}
-        inputChangeState={inputHandleChange}
-        type={TypeOfInput.Password}
-      />
+      <Login/>
     </div>
   );
 }
